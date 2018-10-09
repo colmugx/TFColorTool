@@ -5,15 +5,19 @@ from sty import bg
 class TFColorTool:
     def __init__(self, color):
         if (len(color) != 6 or not re.match(r'[a-zA-Z0-9]', color)):
-            raise Exception("不合法RGB色值")
+            raise Exception("Illegal color")
         self.colorStr = color
 
-    def colorGen(self, number):
+    def colorGen(self, number, to='white'):
         colors = []
         sgl = 1 / number
-        r_color = [255 - c for c in self.hex2rgb()]
+        r_color = [c if to == 'black' else 255 - c for c in self.hex2rgb()]
         for i in range(number + 1):
-            color = [255 - round(c * (1 - i * sgl)) for c in r_color]
+            color = [
+                round(c * (1 - i * sgl))
+                if to == 'black' else 255 - round(c * (1 - i * sgl))
+                for c in r_color
+            ]
             colors.append(color)
         self.printColors(colors)
 
