@@ -5,6 +5,8 @@ Color tool for The Fucking Design.
 
 「Nlvi」配色思路、心血来潮产物。
 
+![](/screenshots/1.gif)
+
 ## 功能
 
 - HEXcolor to RGBcolor
