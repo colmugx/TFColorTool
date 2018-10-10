@@ -10,12 +10,18 @@ class TFColorTool:
 
     def colorGen(self, number, to='white'):
         colors = []
-        sgl = 1 / number
+        r_list = number
+        sgl = 1
+
+        if (type(number) != list):
+            r_list = range(number + 1)
+            sgl = 1 / number
+
         r_color = [c if to == 'black' else 255 - c for c in self.hex2rgb()]
-        for i in range(number + 1):
+        for i in r_list:
+            prop = i if type(number) == list else (1 - i * sgl)
             color = [
-                round(c * (1 - i * sgl))
-                if to == 'black' else 255 - round(c * (1 - i * sgl))
+                round(c * prop) if to == 'black' else 255 - round(c * prop)
                 for c in r_color
             ]
             colors.append(color)
